@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block title %}PROFILE{% endblock title %}
+
+{% block content %}
+  <h1>Profile</h1>
+  <p>Username: {{ user.username }}</p>
+  <p>Email: {{ user_profile.email }}</p>
+<!--  <p>Date Joined: {{ user.date_joined }}</p>-->
+  <p>Balance: {{ user_profile.balance }}</p>
+  <p>Number of Purchases: {{ user_profile.num_purchases }}</p>
+    <h1>Your purchases</h1>
+      <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">№</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for f in purshs %}
+              {% if request.user.id == f.user.id %}
+                <tr>
+                  <th scope="row">{{ f.id }}</th>
+                  <td>{{ f.product }}</td>
+                  <td>{{ f.product.price }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+      </div>
+{% endblock %}

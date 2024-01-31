@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block title %}REGISTRATION{% endblock title %}
+
+
+{% block content %}
+<form method="post" action="{% url 'auth:register' %}">
+    {% csrf_token %}
+    {% for field in form %}
+        <label>{{ field.label }}</label><br>
+        {{ field }}<br>
+    {% endfor %}
+    <button type="submit">Sing in</button>
+    {{ errors }}
+</form>
+{% endblock %}
